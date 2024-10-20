@@ -25,10 +25,4 @@ public class ItemPedido {
 
     @Column(precision = 16, scale = 2)
     private BigDecimal valorTotal;
-
-    //public void setProduto(Object o) {
-    //}
-
-    //public void setPedido(Object o) {
-    //}
 }
