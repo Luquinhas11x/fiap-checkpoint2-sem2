@@ -1,4 +1,11 @@
-# E-commerce
+# FIAP CHECKPOINT #2 (Microservices)
+```
+Integrantes:
+
+Matheus Felipe Domingues Perestrelo RM: 93260  
+Lucas Santana de Paula RM: 95338
+
+```
 
 ## Database
 
