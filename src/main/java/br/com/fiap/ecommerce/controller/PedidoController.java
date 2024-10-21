@@ -36,7 +36,7 @@ public class PedidoController {
     public ResponseEntity<List<PedidoResponseDto>> list() {
         List<PedidoResponseDto> dtos = pedidoService.list()
             .stream()
-            .map(e -> pedidoMapper().toDto(e))
+            .map(e -> pedidoMapper.toDto(e))
             .toList();
         
         return ResponseEntity.ok().body(dtos);
@@ -47,8 +47,8 @@ public class PedidoController {
         return ResponseEntity
         		.status(HttpStatus.CREATED)
         		.body(
-        			pedidoMapper().toDto(
-        					pedidoService.save(pedidoMapper.toModel()))
+        			pedidoMapper.toDto(
+        					pedidoService.save(pedidoMapper.toModel(dto)))
         			);
     }
 
@@ -61,8 +61,8 @@ public class PedidoController {
         }                
         return ResponseEntity.ok()
         		.body(
-        			pedidoMapper().toDto(
-        				pedidoService.save(pedidoMapper.toModel(id)))
+        			pedidoMapper.toDto(
+        				pedidoService.save(pedidoMapper.toModel(id, dto)))
         		);
     }
     
@@ -81,7 +81,7 @@ public class PedidoController {
     			.body(
     				pedidoService
     					.findById(id)
-    					.map(e -> pedidoMapper().toDto(e))
+    					.map(e -> pedidoMapper.toDto(e))
     					.orElseThrow(() -> new RuntimeException("Id inexistente"))
     			);
     	  		     
