@@ -35,7 +35,7 @@ public class ItemPedidoController {
     public ResponseEntity<List<ItemPedidoResponseDto>> list() {
         List<ItemPedidoResponseDto> dtos = itemPedidoService.list()
             .stream()
-            .map(e -> new ItemPedidoResponseDto().toDto(e))
+            .map(e -> itemPedidoMapper().toDto(e))
             .toList();
         
         return ResponseEntity.ok().body(dtos);
@@ -46,8 +46,8 @@ public class ItemPedidoController {
         return ResponseEntity
         		.status(HttpStatus.CREATED)
         		.body(
-        			new ItemPedidoResponseDto().toDto(
-        					itemPedidoService.save(dto.toModel()))
+        			itemPedidoMapper().toDto(
+        					itemPedidoService.save(itemPedidoMapper.toModel()))
         			);
     }
 
@@ -60,8 +60,8 @@ public class ItemPedidoController {
         }                
         return ResponseEntity.ok()
         		.body(
-        			new ItemPedidoResponseDto().toDto(
-        				itemPedidoService.save(dto.toModel(id)))
+        			itemPedidoMapper().toDto(
+        				itemPedidoService.save(itemPedidoMapper.toModel(id)))
         		);
     }
     
@@ -80,7 +80,7 @@ public class ItemPedidoController {
     			.body(
     				itemPedidoService
     					.findById(id)
-    					.map(e -> new ItemPedidoResponseDto().toDto(e))
+    					.map(e -> itemPedidoMapper().toDto(e))
     					.orElseThrow(() -> new RuntimeException("Id inexistente"))
     			);
     	  		     

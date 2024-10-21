@@ -37,7 +37,7 @@ public class ClienteController {
     public ResponseEntity<List<ClienteResponseDto>> list() {
         List<ClienteResponseDto> dtos = clienteService.list()
             .stream()
-            .map(e -> new ClienteResponseDto().toDto(e))
+            .map(e -> clienteMapper().toDto(e))
             .toList();
         
         return ResponseEntity.ok().body(dtos);
@@ -48,8 +48,8 @@ public class ClienteController {
         return ResponseEntity
         		.status(HttpStatus.CREATED)
         		.body(
-        			new ClienteResponseDto().toDto(
-        					clienteService.save(dto.toModel()))
+        			clienteMapper().toDto(
+        					clienteService.save(clienteMapper.toModel()))
         			);
     }
 
@@ -62,8 +62,8 @@ public class ClienteController {
         }                
         return ResponseEntity.ok()
         		.body(
-        			new ClienteResponseDto().toDto(
-        				clienteService.save(dto.toModel(id)))
+        			clienteMapper().toDto(
+        				clienteService.save(clienteMapper.toModel(id)))
         		);
     }
     
@@ -82,7 +82,7 @@ public class ClienteController {
     			.body(
     				clienteService
     					.findById(id)
-    					.map(e -> new ClienteResponseDto().toDto(e))
+    					.map(e -> clienteMapper().toDto(e))
     					.orElseThrow(() -> new RuntimeException("Id inexistente"))
     			);
     	  		     
